@@ -12,11 +12,61 @@ const costElement = document.querySelector(".items__sum");
 const parentToItems = document.querySelector(".body__items-flex");
 
 let result = 0;
-itemsPrice.forEach(
-  (item) => (result = result + parseFloat(item.children[2].innerText))
-);
+function addExpanses() {
+  if (itemsPrice.length === 0) {
+    return;
+  }
+  itemsPrice.forEach((item) => {
+    result = result + parseFloat(item.children[2].innerText);
+    console.log(result);
+  });
+  costElement.innerText = `${result}$`;
+}
 
-costElement.innerText = `${result}$`;
+addExpanses();
+
+//Event listeners
+add.addEventListener("click", () => {
+  toggleContainer.classList.add("active");
+  topNav.style.opacity = 0;
+});
+
+close.addEventListener("click", () => {
+  toggleContainer.classList.remove("active");
+  topNav.style.opacity = 1;
+});
+form.addEventListener("submit", addItem);
+//End of Event listeners
+
+function addItem(e) {
+  e.preventDefault();
+  addExpanses();
+  const newEl = document.createElement("div");
+  newEl.classList.add("item");
+  newEl.innerHTML = `
+        <i class='bx bx-money'></i>
+        <div class="item__name">${description.value}</div>
+        <span>${priceInput.value}</span>
+    `;
+  parentToItems.appendChild(newEl);
+  priceInput.value = "";
+  description.value = "";
+  addExpanses();
+}
+
+//Creating date and inserting it into DOM
+const data = new Date();
+function createDate() {
+  const data = new Date();
+  const day = data.getDate();
+  const month = getMonthNow();
+  const year = data.getFullYear();
+  const fullDate = `${day} ${month} ${year}`;
+  dateElement.innerText = fullDate;
+}
+
+//calling function
+createDate();
 
 const months = [
   "January",
@@ -33,41 +83,7 @@ const months = [
   "December",
 ];
 
-add.addEventListener("click", () => {
-  toggleContainer.classList.add("active");
-  topNav.style.opacity = 0;
-});
-
-close.addEventListener("click", () => {
-  toggleContainer.classList.remove("active");
-  topNav.style.opacity = 1;
-});
-
-function handleSubmit(e) {
-  console.log(123);
-  e.preventDefault();
-  /* const newEl = document.createElement("div");
-  newEl.classList.add("item");
-  newEl.innerHTML = `
-        <i class='bx bx-money'></i>
-        <div class="item__name">Elecewc</div>
-        <span>50,00</span>
-    `;
-  parentToItems.appendChild(newEl); */
-}
-
-const data = new Date();
-function createDate() {
-  const data = new Date();
-  const day = data.getDate();
-  const month = getMonthNow();
-  const year = data.getFullYear();
-  const fullDate = `${day} ${month} ${year}`;
-  dateElement.innerText = fullDate;
-}
-
-createDate();
-
+//Getting correct month for displaying date
 function getMonthNow() {
   const date = new Date();
   const month = date.getMonth();
