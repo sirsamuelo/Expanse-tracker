@@ -32,14 +32,14 @@
         <div class="body__container">
             <div class="btn">Today</div>
             <div class="date__container">
-                <div class="date">18 May 2020</div>
-                <div class="items__sum">270</div>
+                <div class="date"></div>
+                <div class="items__sum"></div>
             </div>
             <div class="body__items-flex">
                 <div class="item">
-                    <img src="./img/lightbulb.jpg" alt="type" class="img__type">
+                    <i class='bx bx-money'></i>
                     <div class="item__name">Electricity</div>
-                    <span>60,00</span>
+                    <span>50,00</span>
                 </div>
                 <!-- <div class="item">
                     <img src="./img/grocery.jpg" alt="type" class="img__type">
@@ -97,9 +97,11 @@
                 </div>
             </div>
 
-            <button id="submit">
-                Submit
-            </button>
+            <form id="form" onsubmit="handleSubmit()">
+                <input id="submit" type="submit" class="submit__btn">
+                </input>
+            </form>
+            
         </div>
 <!-- ADD  SCRREEN END -->
         </div>

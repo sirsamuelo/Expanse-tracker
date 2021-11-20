@@ -142,10 +142,8 @@ body {
     grid-template-columns: 1fr 3fr 1fr;
     align-items: center;
 }
-.body__items-flex .item img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.body__items-flex .item i {
+    font-size: 1.2rem;
 }
 
 .body__items-flex .item .item__name {
@@ -254,7 +252,7 @@ body {
 .grid-item input:focus {
     outline: none;
 }
-.toggle__container button {
+.toggle__container .submit__btn {
     display: inline-block;
     width: 100px;
     border: none;
