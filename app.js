@@ -7,40 +7,38 @@ const submitBtn = document.getElementById("submit");
 const priceInput = document.querySelector(".price");
 const description = document.querySelector(".description");
 const dateElement = document.querySelector(".date");
-const itemsPrice = document.querySelectorAll(".item");
+let itemsPrice = document.querySelectorAll(".item");
 const costElement = document.querySelector(".items__sum");
 const parentToItems = document.querySelector(".body__items-flex");
 
-let result = 0;
 function addExpanses() {
+  let result = 0;
+  let itemsPrice = document.querySelectorAll(".item");
   if (itemsPrice.length === 0) {
     return;
+  } else {
+    itemsPrice.forEach((item) => {
+      result = result + parseFloat(item.children[2].innerText);
+    });
+    costElement.innerText = `${result}$`;
   }
-  itemsPrice.forEach((item) => {
-    result = result + parseFloat(item.children[2].innerText);
-    console.log(result);
-  });
-  costElement.innerText = `${result}$`;
 }
-
-addExpanses();
-
-//Event listeners
-add.addEventListener("click", () => {
-  toggleContainer.classList.add("active");
-  topNav.style.opacity = 0;
-});
-
-close.addEventListener("click", () => {
-  toggleContainer.classList.remove("active");
-  topNav.style.opacity = 1;
-});
-form.addEventListener("submit", addItem);
-//End of Event listeners
 
 function addItem(e) {
   e.preventDefault();
+  if (priceInput.value.trim() === "" || description.value.trim() === "") {
+    alert("Please include some values");
+    return;
+  }
+  createElement();
+
+  priceInput.value = "";
+  description.value = "";
+  let itemsPrice = document.querySelectorAll(".item");
   addExpanses();
+}
+
+function createElement() {
   const newEl = document.createElement("div");
   newEl.classList.add("item");
   newEl.innerHTML = `
@@ -49,9 +47,6 @@ function addItem(e) {
         <span>${priceInput.value}</span>
     `;
   parentToItems.appendChild(newEl);
-  priceInput.value = "";
-  description.value = "";
-  addExpanses();
 }
 
 //Creating date and inserting it into DOM
@@ -129,3 +124,16 @@ function getMonthNow() {
       return "January";
   }
 }
+
+//Event listeners
+add.addEventListener("click", () => {
+  toggleContainer.classList.add("active");
+  topNav.style.opacity = 0;
+});
+
+close.addEventListener("click", () => {
+  toggleContainer.classList.remove("active");
+  topNav.style.opacity = 1;
+});
+form.addEventListener("submit", addItem);
+//End of Event listeners

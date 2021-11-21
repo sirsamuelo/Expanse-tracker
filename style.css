@@ -37,6 +37,7 @@ body {
     width:280px; 
     border-radius: 20px; 
     position: relative;
+    box-shadow: 0 10px 12px rgba(0,0,0,0.5);
 }
 .header {
     background-color: var(--green);
