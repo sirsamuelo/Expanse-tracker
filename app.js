@@ -1,6 +1,7 @@
 const add = document.getElementById("add");
 const close = document.getElementById("close");
 const form = document.getElementById("form");
+const budget = document.getElementById("budget");
 const toggleContainer = document.querySelector(".toggle__container");
 const topNav = document.querySelector(".top__nav");
 const submitBtn = document.getElementById("submit");
@@ -35,6 +36,7 @@ function addItem(e) {
   priceInput.value = "";
   description.value = "";
   let itemsPrice = document.querySelectorAll(".item");
+  console.log(itemsPrice);
   addExpanses();
 }
 
@@ -47,6 +49,7 @@ function createElement() {
         <span>${priceInput.value}</span>
     `;
   parentToItems.appendChild(newEl);
+  budget.innerText = parseFloat(budget.innerHTML) - priceInput.value;
 }
 
 //Creating date and inserting it into DOM
